@@ -29,6 +29,9 @@
 TaskHandle_t led1_task_handle = NULL;
 TaskHandle_t led2_task_handle = NULL;
 TaskHandle_t led3_task_handle = NULL;
+
+uint16_t distancia = 0;
+bool on = true;
 /*==================[internal functions declaration]=========================*/
 static void Led1Task(void *pvParameter){
     while(true){
@@ -68,4 +71,4 @@ void app_main(void){
     xTaskCreate(&Led1Task, "LED_1", 512, NULL, 5, &led1_task_handle);
     xTaskCreate(&Led2Task, "LED_2", 512, NULL, 5, &led2_task_handle);
     xTaskCreate(&Led3Task, "LED_3", 512, NULL, 5, &led3_task_handle);
-}
+} 

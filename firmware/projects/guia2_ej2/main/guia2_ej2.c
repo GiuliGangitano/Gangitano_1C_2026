@@ -1,4 +1,4 @@
-/*! @mainpage Medidor de distancia por ultrasonido
+/*! @mainpage Medidor de distancia por ultrasonido con interrupciones
  *
  * @section genDesc General Description
  *
@@ -20,7 +20,7 @@
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 22/04/2026 | Document creation		                         |
+ * | 29/04/2026 | Document creation		                         |
  *
  * @author Giuliana Gangitano (giuligangitano95@gmail.com)
  *
@@ -36,24 +36,40 @@
 #include "gpio_mcu.h"
 #include "hc_sr04.h"
 #include "lcditse0803.h"
+#include "timer_mcu.h"
 /*==================[macros and definitions]=================================*/
-#define CONFIG_BLINK_PERIOD_LED 1000
-#define CONFIG_BLINK_PERIOD_TECLA 10
+#define CONFIG_BLINK_PERIOD_LED 1000000
 /*==================[internal data definition]===============================*/
 TaskHandle_t led_task_handle = NULL;
-TaskHandle_t teclas_task_handle = NULL;
 uint16_t distancia = 0;
-uint8_t teclas;
 bool encendido = true;
 bool mantener_lectura = false;
 /*==================[internal functions declaration]=========================*/
-static void DistanciaTask(void *pvParameter){
-	HcSr04Init(GPIO_3, GPIO_2);
-	LedsInit();
-	LcdItsE0803Init();
+void TEC1_encendido(void *ptr)
+{
+	encendido = !encendido;
+}
+
+void TEC2_mantener_medicion(void *ptr)
+{
+	if (encendido == true)
+	{
+		mantener_lectura = !mantener_lectura;
+	}
+}
+
+void Atender_timer(void *param)
+{
+	vTaskNotifyGiveFromISR(led_task_handle, pdFALSE);
+}
+
+static void DistanciaTask(void *pvParameter)
+{
 	while (1)
 	{
-		if (encendido == true){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		if (encendido == true)
+		{
 			distancia = HcSr04ReadDistanceInCentimeters();
 			if (distancia < 10)
 			{
@@ -77,36 +93,36 @@ static void DistanciaTask(void *pvParameter){
 				LedOn(LED_2);
 				LedOn(LED_3);
 			}
-			if (mantener_lectura == false){
+			if (mantener_lectura == false)
+			{
 				LcdItsE0803Write(distancia);
 			}
 		}
-		if (encendido == false){
+		if (encendido == false)
+		{
 			LedsOffAll();
 		}
-		vTaskDelay(CONFIG_BLINK_PERIOD_LED / portTICK_PERIOD_MS);
-	}
-}
-
-static void TeclasTask(void *pvParameter){
-	SwitchesInit();
-	while (1){
-		teclas = SwitchesRead();
-		switch(teclas){
-    		case SWITCH_1:
-    			encendido = !encendido;
-    		break;
-    		case SWITCH_2:
-    			mantener_lectura = !mantener_lectura;
-    		break;
-    	}
-		vTaskDelay(CONFIG_BLINK_PERIOD_TECLA / portTICK_PERIOD_MS);
 	}
 }
 /*==================[external functions definition]==========================*/
 void app_main(void)
 {
+	SwitchesInit();
+	HcSr04Init(GPIO_3, GPIO_2);
+	LedsInit();
+	LcdItsE0803Init();
+
 	xTaskCreate(&DistanciaTask, "Leer_distancia", 512, NULL, 5, &led_task_handle);
-	xTaskCreate(&TeclasTask, "Leer_teclas", 512, NULL, 5, &teclas_task_handle);
+
+	SwitchActivInt(SWITCH_1, *TEC1_encendido, NULL);
+	SwitchActivInt(SWITCH_2, *TEC2_mantener_medicion, NULL);
+
+	timer_config_t timer_lectura = {
+		.timer = TIMER_A,
+		.period = CONFIG_BLINK_PERIOD_LED, // tiene que estar en microsegundos
+		.func_p = Atender_timer,
+		.param_p = NULL};
+	TimerInit(&timer_lectura);
+	TimerStart(timer_lectura.timer);
 }
 /*==================[end of file]============================================*/
