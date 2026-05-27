@@ -44,6 +44,12 @@
         },
         {
             "path": "projects/guia2_ej3"
+        },
+        {
+            "path": "projects/guia2_ej4"
+        },
+        {
+            "path": "projects/guia2_ej4_ecg"
         }
     ],
     "settings": {
