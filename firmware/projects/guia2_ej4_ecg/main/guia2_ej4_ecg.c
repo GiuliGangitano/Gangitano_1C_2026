@@ -18,7 +18,7 @@
  *
  * @section changelog Registro de cambios
  *
- * |   Date	    | Description                                    |
+ * |   Fecha    | Descripción                                    |
  * |:----------:|:-----------------------------------------------|
  * | 13/05/2026 | Creación del documento                         |
  * | 20/05/2026 | Código funcionando y verificado		         |

@@ -8,7 +8,7 @@
  *
  * @section ardConn Conexión de hardware
  *
- * |    Peripheral  |   ESP32   	|
+ * |    Periférico  |   ESP32   	|
  * |:--------------:|:--------------|
  * | 	CH1	 	    | 	GPIO_01		|
  * | 	+3.3V 	    | 	+3.3V	    |
