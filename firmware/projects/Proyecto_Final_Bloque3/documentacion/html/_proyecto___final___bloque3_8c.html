@@ -1,0 +1,1369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto_Final_Bloque3: Referencia del archivo D:/Repositorios/Gangitano_1C_2026/firmware/projects/Proyecto_Final_Bloque3/main/Proyecto_Final_Bloque3.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Proyecto_Final_Bloque3<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_proyecto___final___bloque3_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo Proyecto_Final_Bloque3.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="i2c__mcu_8h_source.html">i2c_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mpu6050_8h_source.html">mpu6050.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="switch_8h_source.html">switch.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__mcu_8h_source.html">uart_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="buzzer_8h_source.html">buzzer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pwm__mcu_8h_source.html">pwm_mcu.h</a>&quot;</code><br />
+</div>
+<p><a href="_proyecto___final___bloque3_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a983da55ce8983a470a58fe81cdb4337d" id="r_a983da55ce8983a470a58fe81cdb4337d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a983da55ce8983a470a58fe81cdb4337d">CONFIG_PERIOD_MPU6050</a>&#160;&#160;&#160;500000</td></tr>
+<tr class="memdesc:a983da55ce8983a470a58fe81cdb4337d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Período del timer del sensor MPU6050.  <br /></td></tr>
+<tr class="memitem:adf4f748d4ac02e416f36da144b2da09e" id="r_adf4f748d4ac02e416f36da144b2da09e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#adf4f748d4ac02e416f36da144b2da09e">I2C_MASTER_FREQ</a>&#160;&#160;&#160;100000</td></tr>
+<tr class="memdesc:adf4f748d4ac02e416f36da144b2da09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frecuencia del maestro del I2C.  <br /></td></tr>
+<tr class="memitem:a80de8063bc0c8fde17b92a02c367409f" id="r_a80de8063bc0c8fde17b92a02c367409f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a80de8063bc0c8fde17b92a02c367409f">PWM_WAVE_FREQ</a>&#160;&#160;&#160;2000</td></tr>
+<tr class="memdesc:a80de8063bc0c8fde17b92a02c367409f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frecuencia del PWM.  <br /></td></tr>
+<tr class="memitem:ad937102f49858b3909e82f14ee2754bd" id="r_ad937102f49858b3909e82f14ee2754bd"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad937102f49858b3909e82f14ee2754bd">PWM_CT</a>&#160;&#160;&#160;50</td></tr>
+<tr class="memdesc:ad937102f49858b3909e82f14ee2754bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ciclo de trabajo del PWM (porcentaje).  <br /></td></tr>
+<tr class="memitem:ad27849d29fdbe95bda2af243ecef7086" id="r_ad27849d29fdbe95bda2af243ecef7086"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad27849d29fdbe95bda2af243ecef7086">BUZZER_TONE_FREQ</a>&#160;&#160;&#160;3000</td></tr>
+<tr class="memdesc:ad27849d29fdbe95bda2af243ecef7086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frecuencia de tono de alarma.  <br /></td></tr>
+<tr class="memitem:ab2ba1a0eef0e7baab183013414b9fd33" id="r_ab2ba1a0eef0e7baab183013414b9fd33"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab2ba1a0eef0e7baab183013414b9fd33">MAX_DIGITOS</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:ab2ba1a0eef0e7baab183013414b9fd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máxima cantidad de digitos permitidos para la configuración de la rutina.  <br /></td></tr>
+<tr class="memitem:a674780f9d806f97fc5d0331654b2fce9" id="r_a674780f9d806f97fc5d0331654b2fce9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a674780f9d806f97fc5d0331654b2fce9">DEFAULT_SERIES</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a674780f9d806f97fc5d0331654b2fce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de series por defecto.  <br /></td></tr>
+<tr class="memitem:a89af546dc810be34410f2aea5c147e90" id="r_a89af546dc810be34410f2aea5c147e90"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a89af546dc810be34410f2aea5c147e90">DEFAULT_EJERCICIO</a>&#160;&#160;&#160;20</td></tr>
+<tr class="memdesc:a89af546dc810be34410f2aea5c147e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duración del ejercicio por defecto.  <br /></td></tr>
+<tr class="memitem:ac1e65aaac6e9dab049e1a14ed48816ce" id="r_ac1e65aaac6e9dab049e1a14ed48816ce"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac1e65aaac6e9dab049e1a14ed48816ce">DEFAULT_DESCANSO</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:ac1e65aaac6e9dab049e1a14ed48816ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duración del descanso por defecto.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumeraciones</h2></td></tr>
+<tr class="memitem:a54760ab652c4b61c5d1da3f94a16d822" id="r_a54760ab652c4b61c5d1da3f94a16d822"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822">estado_sistema_t</a> { <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822ab92bb5e401f4e8b1eab697531ae516e4">ESTADO_APAGADO</a> = 0
+, <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822aa0be62937f883ce8dd36dafd0e6192f2">ESTADO_STANDBY</a>
+, <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822a9dbfd8f35d2f37c439cc00e9d8230610">ESTADO_EJERCICIO</a>
+, <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822a70af7e594cc80f5e42c0da99d6fa90c9">ESTADO_DESCANSO</a>
+ }</td></tr>
+<tr class="memdesc:a54760ab652c4b61c5d1da3f94a16d822"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estados posibles del sistema.  <a href="#a54760ab652c4b61c5d1da3f94a16d822">Más...</a><br /></td></tr>
+<tr class="memitem:a5920ba34e60f2564a41e2c64c864f24c" id="r_a5920ba34e60f2564a41e2c64c864f24c"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a5920ba34e60f2564a41e2c64c864f24c">config_rutina_t</a> { <br />
+&#160;&#160;<a class="el" href="#a5920ba34e60f2564a41e2c64c864f24ca02a7e28b3c36b49cc21489455885c576">CONFIG_NINGUNO</a> = 0
+, <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24caa3f5de32a72af8e7ba202576a3192000">CONFIG_PREGUNTA_DP</a>
+, <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24ca69676f771105b9da9d9b95e9f295abd5">CONFIG_SERIES</a>
+, <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24caf7792c3daedc4a8e1a2d825d1a2e04ec">CONFIG_EJERCICIO</a>
+, <br />
+&#160;&#160;<a class="el" href="#a5920ba34e60f2564a41e2c64c864f24caf0a04c51a73da20caf52e235d088a34e">CONFIG_DESCANSO</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a5920ba34e60f2564a41e2c64c864f24c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estados del flujo de configuración de rutina vía UART.  <a href="#a5920ba34e60f2564a41e2c64c864f24c">Más...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a975df264fddb4f43efacb2c7cc33290b" id="r_a975df264fddb4f43efacb2c7cc33290b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a975df264fddb4f43efacb2c7cc33290b">Mensaje_inicio</a> (void)</td></tr>
+<tr class="memdesc:a975df264fddb4f43efacb2c7cc33290b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función con mensaje de inicio de sistema.  <br /></td></tr>
+<tr class="memitem:abfc9cd4e5249eb73d4485f127454c975" id="r_abfc9cd4e5249eb73d4485f127454c975"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abfc9cd4e5249eb73d4485f127454c975">Calculo_Pitch_Roll</a> (float *p, float *r)</td></tr>
+<tr class="memdesc:abfc9cd4e5249eb73d4485f127454c975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función para calcular pitch y roll.  <br /></td></tr>
+<tr class="memitem:ae8026cd79f3e01eb317e23ed3936a099" id="r_ae8026cd79f3e01eb317e23ed3936a099"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae8026cd79f3e01eb317e23ed3936a099">Procesar_Entrada_Numerica</a> (uint16_t valor_min, uint16_t valor_max, char *buffer_valor)</td></tr>
+<tr class="memdesc:ae8026cd79f3e01eb317e23ed3936a099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función que valida un valor numérico ingresado por UART dentro de un rango permitido.  <br /></td></tr>
+<tr class="memitem:a4cc01a4ba9f46629e5d9709eae767999" id="r_a4cc01a4ba9f46629e5d9709eae767999"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4cc01a4ba9f46629e5d9709eae767999">Iniciar_Configuracion_Rutina</a> (void)</td></tr>
+<tr class="memdesc:a4cc01a4ba9f46629e5d9709eae767999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función que inicia el flujo de configuración de rutina via UART.  <br /></td></tr>
+<tr class="memitem:a38e81b24b60f169c115fb4a6c9236aea" id="r_a38e81b24b60f169c115fb4a6c9236aea"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a38e81b24b60f169c115fb4a6c9236aea">Configuracion_Rutina_UART</a> (uint8_t eleccion_rut, char *buffer_2)</td></tr>
+<tr class="memdesc:a38e81b24b60f169c115fb4a6c9236aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máquina de estados para la confiuración de rutina vía UART.  <br /></td></tr>
+<tr class="memitem:a944a983d2636a10e4eca3bed6604a165" id="r_a944a983d2636a10e4eca3bed6604a165"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a944a983d2636a10e4eca3bed6604a165">Recibir_Comando_UART</a> (void *param)</td></tr>
+<tr class="memdesc:a944a983d2636a10e4eca3bed6604a165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de recepción de datos por UART.  <br /></td></tr>
+<tr class="memitem:a65ba67e81c897c78fee0566bfb42ddb2" id="r_a65ba67e81c897c78fee0566bfb42ddb2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a65ba67e81c897c78fee0566bfb42ddb2">Buzzer_Inicio_Fin</a> (void)</td></tr>
+<tr class="memdesc:a65ba67e81c897c78fee0566bfb42ddb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de buzzer para indicar inicio o fin de rutina.  <br /></td></tr>
+<tr class="memitem:abdd19f3daaafd644c6561cc52ead1edf" id="r_abdd19f3daaafd644c6561cc52ead1edf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abdd19f3daaafd644c6561cc52ead1edf">Buzzer_Transicion</a> (void)</td></tr>
+<tr class="memdesc:abdd19f3daaafd644c6561cc52ead1edf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de buzzer para indicar transición entre etapas de rutina.  <br /></td></tr>
+<tr class="memitem:a06dfad665bd3b571e4b3a7ab5021385a" id="r_a06dfad665bd3b571e4b3a7ab5021385a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a06dfad665bd3b571e4b3a7ab5021385a">Aplicar_Feedback</a> (void)</td></tr>
+<tr class="memdesc:a06dfad665bd3b571e4b3a7ab5021385a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función que aplica Feedabakk visual y auditivo según el estado del sistema.  <br /></td></tr>
+<tr class="memitem:a597339680403769022188644977fbd33" id="r_a597339680403769022188644977fbd33"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a597339680403769022188644977fbd33">TEC1_set_referencia</a> (void *ptr)</td></tr>
+<tr class="memdesc:a597339680403769022188644977fbd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función ejecutada ante la interrupción de la TECLA 1.  <br /></td></tr>
+<tr class="memitem:a2813bcf640603a90592ab41c4834af29" id="r_a2813bcf640603a90592ab41c4834af29"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2813bcf640603a90592ab41c4834af29">TEC2_encendido</a> (void *ptr)</td></tr>
+<tr class="memdesc:a2813bcf640603a90592ab41c4834af29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función ejecutada ante la interrupción de la TECLA 2.  <br /></td></tr>
+<tr class="memitem:a4c8c72745617853f6c9d47b9fbe043b3" id="r_a4c8c72745617853f6c9d47b9fbe043b3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4c8c72745617853f6c9d47b9fbe043b3">Atender_timer_MPU6050</a> (void *param)</td></tr>
+<tr class="memdesc:a4c8c72745617853f6c9d47b9fbe043b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Servicio de interrupción del timer del sensor MPU6050.  <br /></td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+<tr class="memdesc:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función principal de la aplicación.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:afdec2e4afe215ccce553057add940850" id="r_afdec2e4afe215ccce553057add940850"><td class="memItemLeft">TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#afdec2e4afe215ccce553057add940850">MPU6050_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memdesc:afdec2e4afe215ccce553057add940850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle de la tarea encargada de la lectura del sensor y los cálculos principales.  <br /></td></tr>
+<tr class="memitem:a6cd53b59037094c991069edefccabe0b" id="r_a6cd53b59037094c991069edefccabe0b"><td class="memItemLeft">TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#a6cd53b59037094c991069edefccabe0b">Rutina_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memdesc:a6cd53b59037094c991069edefccabe0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle de la tarea encargada del diseño de rutina.  <br /></td></tr>
+<tr class="memitem:aa31250bd8ad7b6e60eb7cfdc5709b701" id="r_aa31250bd8ad7b6e60eb7cfdc5709b701"><td class="memItemLeft">int16_t&#160;</td><td class="memItemRight"><a class="el" href="#aa31250bd8ad7b6e60eb7cfdc5709b701">acc_x</a></td></tr>
+<tr class="memdesc:aa31250bd8ad7b6e60eb7cfdc5709b701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables globales de aceleración crudas (enteros).  <br /></td></tr>
+<tr class="memitem:a2edd44395cc97e056ec642808d645127" id="r_a2edd44395cc97e056ec642808d645127"><td class="memItemLeft">int16_t&#160;</td><td class="memItemRight"><a class="el" href="#a2edd44395cc97e056ec642808d645127">acc_y</a></td></tr>
+<tr class="memitem:a269c4f06d5fbe3b801242887a3c621c3" id="r_a269c4f06d5fbe3b801242887a3c621c3"><td class="memItemLeft">int16_t&#160;</td><td class="memItemRight"><a class="el" href="#a269c4f06d5fbe3b801242887a3c621c3">acc_z</a></td></tr>
+<tr class="memitem:a36e7c75eb20e38d3ed225f811eb708aa" id="r_a36e7c75eb20e38d3ed225f811eb708aa"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#a36e7c75eb20e38d3ed225f811eb708aa">accf_x</a></td></tr>
+<tr class="memdesc:a36e7c75eb20e38d3ed225f811eb708aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables globales de aceleración convertidas a float.  <br /></td></tr>
+<tr class="memitem:aa8460f3976749b750e09a243723ffd0e" id="r_aa8460f3976749b750e09a243723ffd0e"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#aa8460f3976749b750e09a243723ffd0e">accf_y</a></td></tr>
+<tr class="memitem:aabb8ec6591502765e1f28a2c547b3dec" id="r_aabb8ec6591502765e1f28a2c547b3dec"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#aabb8ec6591502765e1f28a2c547b3dec">accf_z</a></td></tr>
+<tr class="memitem:a8798159826fd3ccadd09da3c751ab10c" id="r_a8798159826fd3ccadd09da3c751ab10c"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#a8798159826fd3ccadd09da3c751ab10c">pitch</a></td></tr>
+<tr class="memdesc:a8798159826fd3ccadd09da3c751ab10c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables globales de pitch y roll actuales calculados.  <br /></td></tr>
+<tr class="memitem:a14250035bc9db1fb192310b1f57f1a17" id="r_a14250035bc9db1fb192310b1f57f1a17"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#a14250035bc9db1fb192310b1f57f1a17">roll</a></td></tr>
+<tr class="memitem:ac6d746d6eb720ca9aea598b3b88f2fba" id="r_ac6d746d6eb720ca9aea598b3b88f2fba"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#ac6d746d6eb720ca9aea598b3b88f2fba">pitch_ref</a> = 0</td></tr>
+<tr class="memdesc:ac6d746d6eb720ca9aea598b3b88f2fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables globales de pitch y roll de referencia.  <br /></td></tr>
+<tr class="memitem:a5b631097122aaff502619305c85f5637" id="r_a5b631097122aaff502619305c85f5637"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#a5b631097122aaff502619305c85f5637">roll_ref</a> = 0</td></tr>
+<tr class="memitem:ae072a175cc629508975772e372064f93" id="r_ae072a175cc629508975772e372064f93"><td class="memItemLeft">float_t&#160;</td><td class="memItemRight"><a class="el" href="#ae072a175cc629508975772e372064f93">tolerancia</a> = 10</td></tr>
+<tr class="memdesc:ae072a175cc629508975772e372064f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable global de tolerancia angular en grados para detección de desvío postural.  <br /></td></tr>
+<tr class="memitem:aae59872bd3229553ca77d386af6e2c29" id="r_aae59872bd3229553ca77d386af6e2c29"><td class="memItemLeft">volatile <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822">estado_sistema_t</a>&#160;</td><td class="memItemRight"><a class="el" href="#aae59872bd3229553ca77d386af6e2c29">estado_sist</a> = <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822ab92bb5e401f4e8b1eab697531ae516e4">ESTADO_APAGADO</a></td></tr>
+<tr class="memdesc:aae59872bd3229553ca77d386af6e2c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado actual del sistema.  <br /></td></tr>
+<tr class="memitem:a29daf40e7f097e76f1fe416f25fc6ba0" id="r_a29daf40e7f097e76f1fe416f25fc6ba0"><td class="memItemLeft">volatile <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24c">config_rutina_t</a>&#160;</td><td class="memItemRight"><a class="el" href="#a29daf40e7f097e76f1fe416f25fc6ba0">config_rut</a> = <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24ca02a7e28b3c36b49cc21489455885c576">CONFIG_NINGUNO</a></td></tr>
+<tr class="memdesc:a29daf40e7f097e76f1fe416f25fc6ba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado actual del flujo de configuración de rutina.  <br /></td></tr>
+<tr class="memitem:ab193efaff4d919059744b1cf90d0b898" id="r_ab193efaff4d919059744b1cf90d0b898"><td class="memItemLeft">volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#ab193efaff4d919059744b1cf90d0b898">flag_set_referencia</a> = false</td></tr>
+<tr class="memdesc:ab193efaff4d919059744b1cf90d0b898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag para registrar postura de referencia (seteado por TECLA 1).  <br /></td></tr>
+<tr class="memitem:ab4f97c88ad81f65b7084bfda3d534cb0" id="r_ab4f97c88ad81f65b7084bfda3d534cb0"><td class="memItemLeft">volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#ab4f97c88ad81f65b7084bfda3d534cb0">referencia_registrada</a> = false</td></tr>
+<tr class="memdesc:ab4f97c88ad81f65b7084bfda3d534cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag que indica si ya se registró al menos una vez la referencia.  <br /></td></tr>
+<tr class="memitem:aff5bcad97c87e2245fc052e850477c1e" id="r_aff5bcad97c87e2245fc052e850477c1e"><td class="memItemLeft">volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#aff5bcad97c87e2245fc052e850477c1e">rutina_configurada</a> = false</td></tr>
+<tr class="memdesc:aff5bcad97c87e2245fc052e850477c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag que indica si la rutina queda configurada.  <br /></td></tr>
+<tr class="memitem:a4f8922ce31cbc7d990e6816f40582c2d" id="r_a4f8922ce31cbc7d990e6816f40582c2d"><td class="memItemLeft">volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#a4f8922ce31cbc7d990e6816f40582c2d">rutina_interrumpida</a> = false</td></tr>
+<tr class="memdesc:a4f8922ce31cbc7d990e6816f40582c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag que indica si la rutina fue interrumpida.  <br /></td></tr>
+<tr class="memitem:a320379ec8c0e53f031c5ff3ea2d23384" id="r_a320379ec8c0e53f031c5ff3ea2d23384"><td class="memItemLeft">volatile uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a320379ec8c0e53f031c5ff3ea2d23384">series</a> = <a class="el" href="#a674780f9d806f97fc5d0331654b2fce9">DEFAULT_SERIES</a></td></tr>
+<tr class="memdesc:a320379ec8c0e53f031c5ff3ea2d23384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Número de series configuradas para la rutina actual.  <br /></td></tr>
+<tr class="memitem:ad008de86508f71ccc5a36a2c93a2edbe" id="r_ad008de86508f71ccc5a36a2c93a2edbe"><td class="memItemLeft">volatile uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#ad008de86508f71ccc5a36a2c93a2edbe">ejercicio</a> = <a class="el" href="#a89af546dc810be34410f2aea5c147e90">DEFAULT_EJERCICIO</a></td></tr>
+<tr class="memdesc:ad008de86508f71ccc5a36a2c93a2edbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duración en segundos de la etapa de ejercicio por serie.  <br /></td></tr>
+<tr class="memitem:a8cb2c39e6d26ce3607b707044492d4eb" id="r_a8cb2c39e6d26ce3607b707044492d4eb"><td class="memItemLeft">volatile uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a8cb2c39e6d26ce3607b707044492d4eb">descanso</a> = <a class="el" href="#ac1e65aaac6e9dab049e1a14ed48816ce">DEFAULT_DESCANSO</a></td></tr>
+<tr class="memdesc:a8cb2c39e6d26ce3607b707044492d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duración en segundos de la etapa de descanso entre series.  <br /></td></tr>
+<tr class="memitem:ac8bcf9d6a2843b5aa70700423b9ba91d" id="r_ac8bcf9d6a2843b5aa70700423b9ba91d"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ac8bcf9d6a2843b5aa70700423b9ba91d">buffer_entrada</a> [<a class="el" href="#ab2ba1a0eef0e7baab183013414b9fd33">MAX_DIGITOS</a>+1] = {0}</td></tr>
+<tr class="memdesc:ac8bcf9d6a2843b5aa70700423b9ba91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer de entrada para recibir datos númericos por UART.  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="ad27849d29fdbe95bda2af243ecef7086" name="ad27849d29fdbe95bda2af243ecef7086"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27849d29fdbe95bda2af243ecef7086">&#9670;&#160;</a></span>BUZZER_TONE_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUZZER_TONE_FREQ&#160;&#160;&#160;3000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frecuencia de tono de alarma. </p>
+<p>Define la frecuencia en Hz del tono del buzzer cuando se detecta desvío postural. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00101">101</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a983da55ce8983a470a58fe81cdb4337d" name="a983da55ce8983a470a58fe81cdb4337d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a983da55ce8983a470a58fe81cdb4337d">&#9670;&#160;</a></span>CONFIG_PERIOD_MPU6050</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_PERIOD_MPU6050&#160;&#160;&#160;500000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Período del timer del sensor MPU6050. </p>
+<p>Define el tiempo en microsegundos del timer que controla la lectura de datos del sensor MPU6050. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00073">73</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ac1e65aaac6e9dab049e1a14ed48816ce" name="ac1e65aaac6e9dab049e1a14ed48816ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e65aaac6e9dab049e1a14ed48816ce">&#9670;&#160;</a></span>DEFAULT_DESCANSO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_DESCANSO&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Duración del descanso por defecto. </p>
+<p>Define la cantidad en segundos que dura la etapa de descanso para la elección de rutina DEFAULT. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00129">129</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00384">Iniciar_Configuracion_Rutina()</a>.</p>
+
+</div>
+</div>
+<a id="a89af546dc810be34410f2aea5c147e90" name="a89af546dc810be34410f2aea5c147e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89af546dc810be34410f2aea5c147e90">&#9670;&#160;</a></span>DEFAULT_EJERCICIO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_EJERCICIO&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Duración del ejercicio por defecto. </p>
+<p>Define la cantidad en segundos que dura la etapa de ejercicio para la elección de rutina DEFAULT. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00122">122</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00384">Iniciar_Configuracion_Rutina()</a>.</p>
+
+</div>
+</div>
+<a id="a674780f9d806f97fc5d0331654b2fce9" name="a674780f9d806f97fc5d0331654b2fce9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a674780f9d806f97fc5d0331654b2fce9">&#9670;&#160;</a></span>DEFAULT_SERIES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_SERIES&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cantidad de series por defecto. </p>
+<p>Define la cantidad de series para la elección de rutina DEFAULT. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00115">115</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00384">Iniciar_Configuracion_Rutina()</a>.</p>
+
+</div>
+</div>
+<a id="adf4f748d4ac02e416f36da144b2da09e" name="adf4f748d4ac02e416f36da144b2da09e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf4f748d4ac02e416f36da144b2da09e">&#9670;&#160;</a></span>I2C_MASTER_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_MASTER_FREQ&#160;&#160;&#160;100000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frecuencia del maestro del I2C. </p>
+<p>Define la frecuencia en Hz del clock del maestro para el protocolo I2C. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00080">80</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ab2ba1a0eef0e7baab183013414b9fd33" name="ab2ba1a0eef0e7baab183013414b9fd33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ba1a0eef0e7baab183013414b9fd33">&#9670;&#160;</a></span>MAX_DIGITOS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_DIGITOS&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Máxima cantidad de digitos permitidos para la configuración de la rutina. </p>
+<p>Define el límite de caracteres para el buffer de entrada vía UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00108">108</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a>.</p>
+
+</div>
+</div>
+<a id="ad937102f49858b3909e82f14ee2754bd" name="ad937102f49858b3909e82f14ee2754bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad937102f49858b3909e82f14ee2754bd">&#9670;&#160;</a></span>PWM_CT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PWM_CT&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ciclo de trabajo del PWM (porcentaje). </p>
+<p>Define el ciclo de trabajo del PWM utilizado en el buzzer. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00094">94</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a80de8063bc0c8fde17b92a02c367409f" name="a80de8063bc0c8fde17b92a02c367409f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80de8063bc0c8fde17b92a02c367409f">&#9670;&#160;</a></span>PWM_WAVE_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PWM_WAVE_FREQ&#160;&#160;&#160;2000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frecuencia del PWM. </p>
+<p>Define la frecuencia en Hz del PWM utilizado en el buzzer. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00087">87</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Documentación de enumeraciones</h2>
+<a id="a5920ba34e60f2564a41e2c64c864f24c" name="a5920ba34e60f2564a41e2c64c864f24c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5920ba34e60f2564a41e2c64c864f24c">&#9670;&#160;</a></span>config_rutina_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24c">config_rutina_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estados del flujo de configuración de rutina vía UART. </p>
+<p>Enumeración que representa las etapas del proceso de configuración de rutina. Cada valor indica qué dato se está esperando recibir del usuario en ese momento:</p><ul>
+<li>CONFIG_NINGUNO: no hay configuración en curso.</li>
+<li>CONFIG_PREGUNTA_DP: esperando elección entre rutina por defecto ('D') o personalizada ('P').</li>
+<li>CONFIG_SERIES: esperando número de series (rango: 1 a 20).</li>
+<li>CONFIG_EJERCICIO: esperando duración del ejercicio en segundos (rango: 5 a 600).</li>
+<li>CONFIG_DESCANSO: esperando duración del descanso en segundos (rango: 0 a 600). </li>
+</ul>
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="a5920ba34e60f2564a41e2c64c864f24ca02a7e28b3c36b49cc21489455885c576" name="a5920ba34e60f2564a41e2c64c864f24ca02a7e28b3c36b49cc21489455885c576"></a>CONFIG_NINGUNO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5920ba34e60f2564a41e2c64c864f24caa3f5de32a72af8e7ba202576a3192000" name="a5920ba34e60f2564a41e2c64c864f24caa3f5de32a72af8e7ba202576a3192000"></a>CONFIG_PREGUNTA_DP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5920ba34e60f2564a41e2c64c864f24ca69676f771105b9da9d9b95e9f295abd5" name="a5920ba34e60f2564a41e2c64c864f24ca69676f771105b9da9d9b95e9f295abd5"></a>CONFIG_SERIES&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5920ba34e60f2564a41e2c64c864f24caf7792c3daedc4a8e1a2d825d1a2e04ec" name="a5920ba34e60f2564a41e2c64c864f24caf7792c3daedc4a8e1a2d825d1a2e04ec"></a>CONFIG_EJERCICIO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5920ba34e60f2564a41e2c64c864f24caf0a04c51a73da20caf52e235d088a34e" name="a5920ba34e60f2564a41e2c64c864f24caf0a04c51a73da20caf52e235d088a34e"></a>CONFIG_DESCANSO&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00159">159</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+</div>
+</div>
+<a id="a54760ab652c4b61c5d1da3f94a16d822" name="a54760ab652c4b61c5d1da3f94a16d822"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54760ab652c4b61c5d1da3f94a16d822">&#9670;&#160;</a></span>estado_sistema_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822">estado_sistema_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estados posibles del sistema. </p>
+<p>Enumeración que representa los cuatro estados del sistema:</p><ul>
+<li>ESTADO_APAGADO: el sistema está inactivo (LED rojo encendido).</li>
+<li>ESTADO_STANDBY: el sistema está encendido pero no midiendo (LED amarillo encendido).</li>
+<li>ESTADO_EJERCICIO: el sistema está en modo de medición activa (LED verde encendido).</li>
+<li>ESTADO_DESCANSO: el sistema está en pausa entre series (LED amarillo y verde encendidos). </li>
+</ul>
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="a54760ab652c4b61c5d1da3f94a16d822ab92bb5e401f4e8b1eab697531ae516e4" name="a54760ab652c4b61c5d1da3f94a16d822ab92bb5e401f4e8b1eab697531ae516e4"></a>ESTADO_APAGADO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a54760ab652c4b61c5d1da3f94a16d822aa0be62937f883ce8dd36dafd0e6192f2" name="a54760ab652c4b61c5d1da3f94a16d822aa0be62937f883ce8dd36dafd0e6192f2"></a>ESTADO_STANDBY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a54760ab652c4b61c5d1da3f94a16d822a9dbfd8f35d2f37c439cc00e9d8230610" name="a54760ab652c4b61c5d1da3f94a16d822a9dbfd8f35d2f37c439cc00e9d8230610"></a>ESTADO_EJERCICIO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a54760ab652c4b61c5d1da3f94a16d822a70af7e594cc80f5e42c0da99d6fa90c9" name="a54760ab652c4b61c5d1da3f94a16d822a70af7e594cc80f5e42c0da99d6fa90c9"></a>ESTADO_DESCANSO&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00140">140</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a06dfad665bd3b571e4b3a7ab5021385a" name="a06dfad665bd3b571e4b3a7ab5021385a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06dfad665bd3b571e4b3a7ab5021385a">&#9670;&#160;</a></span>Aplicar_Feedback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Aplicar_Feedback </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función que aplica Feedabakk visual y auditivo según el estado del sistema. </p>
+<p>Actualiza el estado de los tres <a class="el" href="group___l_e_d.html#gab6831a7d06c0a2bc69f9b024f6445a80" title="LED driver for the ESP-EDU Board.">LEDs</a> y del buzzer de acuerdo con el valor actual de la variable global 'estado_sist': </p><pre class="fragment">- ESTADO_APAGADO: LED rojo encendido, buzzer apagado.
+- ESTADO_STANDBY: LED amarillo encendido, buzzer apagado.
+- ESTADO_EJERCICIO: LED verde encendido. El buzzer se activa si el pitch o el roll actuales superan 
+  la tolerancia respecto a los valores de referencia; de lo contrario, el buzzer permanece apagado.
+- ESTADO_DESCANSO: LED verde y LED amarillo encendidos, buzzer apagado.
+</pre><dl class="section note"><dt>Nota</dt><dd>Esta función se llamada periódicamente desde la tarea de detección para mantener el feedback sincronizado con el estado del sistema. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">571</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="buzzer_8c_source.html#l00053">BuzzerOff()</a>, <a class="el" href="buzzer_8c_source.html#l00049">BuzzerOn()</a>, <a class="el" href="buzzer_8c_source.html#l00057">BuzzerSetFrec()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00142">ESTADO_APAGADO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00145">ESTADO_DESCANSO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00144">ESTADO_EJERCICIO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00215">estado_sist</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00143">ESTADO_STANDBY</a>, <a class="el" href="led_8h_source.html#l00034">LED_1</a>, <a class="el" href="led_8h_source.html#l00033">LED_2</a>, <a class="el" href="led_8h_source.html#l00032">LED_3</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a>, <a class="el" href="led_8c_source.html#l00046">LedOn()</a>, <a class="el" href="buzzer_8h_source.html#l00089">NOTE_C6</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00195">pitch</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00201">pitch_ref</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00196">roll</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00202">roll_ref</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00207">tolerancia</a>.</p>
+
+</div>
+</div>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función principal de la aplicación. </p>
+<p>Inicializa todos los periféricos y recursos del sistema. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">808</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00662">Atender_timer_MPU6050()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00101">BUZZER_TONE_FREQ</a>, <a class="el" href="buzzer_8c_source.html#l00043">BuzzerInit()</a>, <a class="el" href="buzzer_8c_source.html#l00057">BuzzerSetFrec()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00073">CONFIG_PERIOD_MPU6050</a>, <a class="el" href="gpio__mcu_8h_source.html#l00072">GPIO_20</a>, <a class="el" href="i2c__mcu_8c_source.html#l00034">I2C_initialize()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00080">I2C_MASTER_FREQ</a>, <a class="el" href="led_8c_source.html#l00031">LedsInit()</a>, <a class="el" href="mpu6050_8c_source.html#l00048">MPU6050_initialize()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00171">MPU6050_task_handle</a>, <a class="el" href="ili9341_8c_source.html#l00019">NULL</a>, <a class="el" href="pwm__mcu_8h_source.html#l00037">PWM_3</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00094">PWM_CT</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00087">PWM_WAVE_FREQ</a>, <a class="el" href="pwm__mcu_8c_source.html#l00039">PWMInit()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00081">PWMOn()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00115">PWMSetDutyCycle()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00176">Rutina_task_handle</a>, <a class="el" href="switch_8h_source.html#l00032">SWITCH_1</a>, <a class="el" href="switch_8h_source.html#l00033">SWITCH_2</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00029">SwitchesInit()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00620">TEC1_set_referencia()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00636">TEC2_encendido()</a>, <a class="el" href="timer__mcu_8h_source.html#l00040">timer_config_t::timer</a>, <a class="el" href="timer__mcu_8h_source.html#l00032">TIMER_A</a>, <a class="el" href="timer__mcu_8c_source.html#l00067">TimerInit()</a>, <a class="el" href="timer__mcu_8c_source.html#l00116">TimerStart()</a>, <a class="el" href="uart__mcu_8h_source.html#l00032">UART_PC</a> y <a class="el" href="uart__mcu_8c_source.html#l00107">UartInit()</a>.</p>
+
+</div>
+</div>
+<a id="a4c8c72745617853f6c9d47b9fbe043b3" name="a4c8c72745617853f6c9d47b9fbe043b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c8c72745617853f6c9d47b9fbe043b3">&#9670;&#160;</a></span>Atender_timer_MPU6050()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Atender_timer_MPU6050 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Servicio de interrupción del timer del sensor MPU6050. </p>
+<p>Esta función se ejecuta cada vez que el timer llega a su cuenta máxima. Envía una notificación a la tarea 'Deteccion_Pitch_Roll' para desbloquearla.</p>
+<dl class="section note"><dt>Nota</dt><dd>Esta función se ejecuta en contexto de interrupción (ISR).</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>Puntero a parámetros genéricos (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00662">662</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00171">MPU6050_task_handle</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a65ba67e81c897c78fee0566bfb42ddb2" name="a65ba67e81c897c78fee0566bfb42ddb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ba67e81c897c78fee0566bfb42ddb2">&#9670;&#160;</a></span>Buzzer_Inicio_Fin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Buzzer_Inicio_Fin </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función de buzzer para indicar inicio o fin de rutina. </p>
+<p>Reproduce dos notas consecutivas para señalizar al usuario que la rutina comenzó o finalizó. Se inserta un retardo de 50 ms entre ambas. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00538">538</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="buzzer_8c_source.html#l00061">BuzzerPlayTone()</a>, <a class="el" href="buzzer_8h_source.html#l00077">NOTE_C5</a> y <a class="el" href="buzzer_8h_source.html#l00081">NOTE_E5</a>.</p>
+
+</div>
+</div>
+<a id="abdd19f3daaafd644c6561cc52ead1edf" name="abdd19f3daaafd644c6561cc52ead1edf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd19f3daaafd644c6561cc52ead1edf">&#9670;&#160;</a></span>Buzzer_Transicion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Buzzer_Transicion </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función de buzzer para indicar transición entre etapas de rutina. </p>
+<p>Reproduce uan nota durante 400 ms para indicar al usuario el cambio de etapa dentro de la rutina: inicio de descanso o comienzo de nueva serie. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00551">551</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="buzzer_8c_source.html#l00061">BuzzerPlayTone()</a> y <a class="el" href="buzzer_8h_source.html#l00074">NOTE_A4</a>.</p>
+
+</div>
+</div>
+<a id="abfc9cd4e5249eb73d4485f127454c975" name="abfc9cd4e5249eb73d4485f127454c975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfc9cd4e5249eb73d4485f127454c975">&#9670;&#160;</a></span>Calculo_Pitch_Roll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Calculo_Pitch_Roll </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función para calcular pitch y roll. </p>
+<p>Adquiere los datos de aceleración del sensor MPU6050 en sus tres ejes, hace los cálculos de pitch y roll.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">p</td><td>Puntero a dirección donde se almacena el valor de pitch calculado (en grados). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">r</td><td>Puntero a dirección donde se almacena el valor de roll calculado (en grados). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">328</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00181">acc_x</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00182">acc_y</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00183">acc_z</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00188">accf_x</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00189">accf_y</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00190">accf_z</a> y <a class="el" href="mpu6050_8c_source.html#l01822">MPU6050_getAcceleration()</a>.</p>
+
+</div>
+</div>
+<a id="a38e81b24b60f169c115fb4a6c9236aea" name="a38e81b24b60f169c115fb4a6c9236aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38e81b24b60f169c115fb4a6c9236aea">&#9670;&#160;</a></span>Configuracion_Rutina_UART()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Configuracion_Rutina_UART </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>eleccion_rut</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>buffer_2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Máquina de estados para la confiuración de rutina vía UART. </p>
+<p>Procesa los caracteres recibidos por UART según el estado actual de configuración (config_rut). Avanza por las etapas de configuración en el siguiente orden:</p><ol type="1">
+<li>CONFIG_PREGUNTA_DP: selección entre rutina por defecto o personalizada.</li>
+<li>CONFIG_SERIES: ingreso de cantidad de series (1-20).</li>
+<li>CONFIG_EJERCICIO: ingreso de duración del ejercicio en segundos (5-600).</li>
+<li>CONFIG_DESCANSO: ingreso de duración del descanso en segundos (0-600).</li>
+</ol>
+<p>Al completarse la configuración, establece rutina_configurada en true y config_rut en CONFIG_NINGUNO.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eleccion_rut</td><td>Primer caracter recibido por UART en el ciclo actual. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer_2</td><td>Puntero al buffer completo con los caracteres recibidos. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">408</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00165">CONFIG_DESCANSO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00164">CONFIG_EJERCICIO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00161">CONFIG_NINGUNO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00162">CONFIG_PREGUNTA_DP</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00223">config_rut</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00163">CONFIG_SERIES</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00129">DEFAULT_DESCANSO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00122">DEFAULT_EJERCICIO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00115">DEFAULT_SERIES</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00279">descanso</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00271">ejercicio</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00352">Procesar_Entrada_Numerica()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00247">rutina_configurada</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00263">series</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a>.</p>
+
+</div>
+</div>
+<a id="a4cc01a4ba9f46629e5d9709eae767999" name="a4cc01a4ba9f46629e5d9709eae767999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc01a4ba9f46629e5d9709eae767999">&#9670;&#160;</a></span>Iniciar_Configuracion_Rutina()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Iniciar_Configuracion_Rutina </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función que inicia el flujo de configuración de rutina via UART. </p>
+<p>Establece la variable global 'config_rut' en CONFIG_PREGUNTA_DP e imprime por consola el mensaje inicial para que el usuario elija entre rutina por defecto ('D') o personalizada ('P'). Esta función debe llamarse desde ESTADO_STANDBY, luego de que el usuario haya registrado la postura de referencia. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00384">384</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00162">CONFIG_PREGUNTA_DP</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00223">config_rut</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00129">DEFAULT_DESCANSO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00122">DEFAULT_EJERCICIO</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00115">DEFAULT_SERIES</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a>.</p>
+
+</div>
+</div>
+<a id="a975df264fddb4f43efacb2c7cc33290b" name="a975df264fddb4f43efacb2c7cc33290b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975df264fddb4f43efacb2c7cc33290b">&#9670;&#160;</a></span>Mensaje_inicio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mensaje_inicio </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función con mensaje de inicio de sistema. </p>
+<p>Muestra por consola un mensaje de inicio de sistema que se muestra una sola vez, el cual contiene información de cómo funciona la aplicación. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00295">295</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+</div>
+</div>
+<a id="ae8026cd79f3e01eb317e23ed3936a099" name="ae8026cd79f3e01eb317e23ed3936a099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8026cd79f3e01eb317e23ed3936a099">&#9670;&#160;</a></span>Procesar_Entrada_Numerica()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Procesar_Entrada_Numerica </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>valor_min</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>valor_max</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>buffer_valor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función que valida un valor numérico ingresado por UART dentro de un rango permitido. </p>
+<p>Interpreta el buffer de entrada como un número enterp y verifica que no esté vacío y que se encuentre dentro del rango establecido [valor_min, valor_max]. En caso de error, imprime un mensaje por consola para corregir la entrada de datos.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">valor_min</td><td>Valor mínimo aceptado (inclusive). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">valor_max</td><td>Valor máximo aceptado (inclusive). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer_valor</td><td>Puntero al buffer de caracteres con el valor ingresado.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el valor es válido y se encuentra dentro del rango. </dd>
+<dd>
+false si la entrada está vacía o el valor está fuera del rango permitido. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00352">352</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>.</p>
+
+</div>
+</div>
+<a id="a944a983d2636a10e4eca3bed6604a165" name="a944a983d2636a10e4eca3bed6604a165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944a983d2636a10e4eca3bed6604a165">&#9670;&#160;</a></span>Recibir_Comando_UART()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Recibir_Comando_UART </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función de recepción de datos por UART. </p>
+<p>Esta función se invoca automáticamente cada vez que se reciben datos por el puerto UART_PC. Lee hasta MAX_DIGITOS + 1 caracteres en el buffer global 'buffer_entrada' y actúa según el contexto:</p><ul>
+<li>Si hay una configuración de rutina en curso, delega el procesamiento a '<a class="el" href="#a38e81b24b60f169c115fb4a6c9236aea" title="Máquina de estados para la confiuración de rutina vía UART.">Configuracion_Rutina_UART()</a>'.</li>
+<li>Si se recibe 'S' o 's' en ESTADO_STANDBY, verifica que haya referencia registrada y rutina configurada antes de iniciar la medición (notifica a 'Rutina_task_handle').</li>
+<li>Si se recibe 'S' o 's' en ESTADO_EJERCICIO o ESTADO_DESCANSO, detiene la medición.</li>
+<li>Cualquier otro carácter fuera de contexto genera un mensaje de error por consola.</li>
+</ul>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>Puntero a parámetros genéricos (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">482</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00287">buffer_entrada</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00161">CONFIG_NINGUNO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00223">config_rut</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00145">ESTADO_DESCANSO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00144">ESTADO_EJERCICIO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00215">estado_sist</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00143">ESTADO_STANDBY</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00384">Iniciar_Configuracion_Rutina()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00108">MAX_DIGITOS</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00239">referencia_registrada</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00247">rutina_configurada</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00176">Rutina_task_handle</a>, <a class="el" href="uart__mcu_8h_source.html#l00032">UART_PC</a> y <a class="el" href="uart__mcu_8c_source.html#l00161">UartReadBuffer()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a597339680403769022188644977fbd33" name="a597339680403769022188644977fbd33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a597339680403769022188644977fbd33">&#9670;&#160;</a></span>TEC1_set_referencia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TEC1_set_referencia </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función ejecutada ante la interrupción de la TECLA 1. </p>
+<p>Setea el estado de la variable 'flag_set_referencia' en true.</p>
+<dl class="section note"><dt>Nota</dt><dd>Esta función se ejecuta en contexto de interrupción (ISR).</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Puntero a parámetros genéricos (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00620">620</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00231">flag_set_referencia</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a2813bcf640603a90592ab41c4834af29" name="a2813bcf640603a90592ab41c4834af29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2813bcf640603a90592ab41c4834af29">&#9670;&#160;</a></span>TEC2_encendido()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TEC2_encendido </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función ejecutada ante la interrupción de la TECLA 2. </p>
+<p>Si la variable 'estado_sist' es ESTADO_APAGADO pasa a ESTADO_STANDBY, en cualquier otro caso pasa a apagado ESTADO_APAGADO. Como medida de seguridad, se resetean ciertas flags y el valor de 'config_rut'.</p>
+<dl class="section note"><dt>Nota</dt><dd>Esta función se ejecuta en contexto de interrupción (ISR). No inicia la medición: eso es responsabilidad exclusiva de la tecla 'S' por UART.</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Puntero a parámetros genéricos (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00636">636</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00161">CONFIG_NINGUNO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00223">config_rut</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00142">ESTADO_APAGADO</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00215">estado_sist</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00143">ESTADO_STANDBY</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00239">referencia_registrada</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00247">rutina_configurada</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="aa31250bd8ad7b6e60eb7cfdc5709b701" name="aa31250bd8ad7b6e60eb7cfdc5709b701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa31250bd8ad7b6e60eb7cfdc5709b701">&#9670;&#160;</a></span>acc_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t acc_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variables globales de aceleración crudas (enteros). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00181">181</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">Calculo_Pitch_Roll()</a>.</p>
+
+</div>
+</div>
+<a id="a2edd44395cc97e056ec642808d645127" name="a2edd44395cc97e056ec642808d645127"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2edd44395cc97e056ec642808d645127">&#9670;&#160;</a></span>acc_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t acc_y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00182">182</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">Calculo_Pitch_Roll()</a>.</p>
+
+</div>
+</div>
+<a id="a269c4f06d5fbe3b801242887a3c621c3" name="a269c4f06d5fbe3b801242887a3c621c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a269c4f06d5fbe3b801242887a3c621c3">&#9670;&#160;</a></span>acc_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t acc_z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00183">183</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">Calculo_Pitch_Roll()</a>.</p>
+
+</div>
+</div>
+<a id="a36e7c75eb20e38d3ed225f811eb708aa" name="a36e7c75eb20e38d3ed225f811eb708aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36e7c75eb20e38d3ed225f811eb708aa">&#9670;&#160;</a></span>accf_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t accf_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variables globales de aceleración convertidas a float. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00188">188</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">Calculo_Pitch_Roll()</a>.</p>
+
+</div>
+</div>
+<a id="aa8460f3976749b750e09a243723ffd0e" name="aa8460f3976749b750e09a243723ffd0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8460f3976749b750e09a243723ffd0e">&#9670;&#160;</a></span>accf_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t accf_y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00189">189</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">Calculo_Pitch_Roll()</a>.</p>
+
+</div>
+</div>
+<a id="aabb8ec6591502765e1f28a2c547b3dec" name="aabb8ec6591502765e1f28a2c547b3dec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb8ec6591502765e1f28a2c547b3dec">&#9670;&#160;</a></span>accf_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t accf_z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00190">190</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00328">Calculo_Pitch_Roll()</a>.</p>
+
+</div>
+</div>
+<a id="ac8bcf9d6a2843b5aa70700423b9ba91d" name="ac8bcf9d6a2843b5aa70700423b9ba91d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8bcf9d6a2843b5aa70700423b9ba91d">&#9670;&#160;</a></span>buffer_entrada</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t buffer_entrada[<a class="el" href="#ab2ba1a0eef0e7baab183013414b9fd33">MAX_DIGITOS</a>+1] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffer de entrada para recibir datos númericos por UART. </p>
+<p>Almacena temporalmente los caracteres recibidos por puerto serie durante la condiguración de la rutina. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00287">287</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a>.</p>
+
+</div>
+</div>
+<a id="a29daf40e7f097e76f1fe416f25fc6ba0" name="a29daf40e7f097e76f1fe416f25fc6ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29daf40e7f097e76f1fe416f25fc6ba0">&#9670;&#160;</a></span>config_rut</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24c">config_rutina_t</a> config_rut = <a class="el" href="#a5920ba34e60f2564a41e2c64c864f24ca02a7e28b3c36b49cc21489455885c576">CONFIG_NINGUNO</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estado actual del flujo de configuración de rutina. </p>
+<p>Variable global que indica en qué etapa del proceso de configuración se encuentra el sistema cuando el usuario está configurando una rutina vía UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00223">223</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00384">Iniciar_Configuracion_Rutina()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00636">TEC2_encendido()</a>.</p>
+
+</div>
+</div>
+<a id="a8cb2c39e6d26ce3607b707044492d4eb" name="a8cb2c39e6d26ce3607b707044492d4eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb2c39e6d26ce3607b707044492d4eb">&#9670;&#160;</a></span>descanso</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint16_t descanso = <a class="el" href="#ac1e65aaac6e9dab049e1a14ed48816ce">DEFAULT_DESCANSO</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Duración en segundos de la etapa de descanso entre series. </p>
+<p>Tiempo de pausa entre series consecutivas. Toma el valor de DEFAULT_DESCANSO al inicio y se actualiza con la configuración del usuario vía UART. Si es 0, no hay descanso entre series. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00279">279</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>.</p>
+
+</div>
+</div>
+<a id="ad008de86508f71ccc5a36a2c93a2edbe" name="ad008de86508f71ccc5a36a2c93a2edbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad008de86508f71ccc5a36a2c93a2edbe">&#9670;&#160;</a></span>ejercicio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint16_t ejercicio = <a class="el" href="#a89af546dc810be34410f2aea5c147e90">DEFAULT_EJERCICIO</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Duración en segundos de la etapa de ejercicio por serie. </p>
+<p>Tiempo activo de medición por serie. Toma el valor de DEFAULT_EJERCICIO al inicio y se actualiza con la configuración del usuario vía UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00271">271</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>.</p>
+
+</div>
+</div>
+<a id="aae59872bd3229553ca77d386af6e2c29" name="aae59872bd3229553ca77d386af6e2c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae59872bd3229553ca77d386af6e2c29">&#9670;&#160;</a></span>estado_sist</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822">estado_sistema_t</a> estado_sist = <a class="el" href="#a54760ab652c4b61c5d1da3f94a16d822ab92bb5e401f4e8b1eab697531ae516e4">ESTADO_APAGADO</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estado actual del sistema. </p>
+<p>Variable global que refñeja en qué estado se encuentra el sistema en todo momento. Es modificada tanto desde las interrupciones (TECLA 2) como desde la tarea de rutina y los comandos de UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00215">215</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">Aplicar_Feedback()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00636">TEC2_encendido()</a>.</p>
+
+</div>
+</div>
+<a id="ab193efaff4d919059744b1cf90d0b898" name="ab193efaff4d919059744b1cf90d0b898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab193efaff4d919059744b1cf90d0b898">&#9670;&#160;</a></span>flag_set_referencia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool flag_set_referencia = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag para registrar postura de referencia (seteado por TECLA 1). </p>
+<p>True: se toma la referencia correctamente. False: no hay solicitud de referencia. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00231">231</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00620">TEC1_set_referencia()</a>.</p>
+
+</div>
+</div>
+<a id="afdec2e4afe215ccce553057add940850" name="afdec2e4afe215ccce553057add940850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdec2e4afe215ccce553057add940850">&#9670;&#160;</a></span>MPU6050_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t MPU6050_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handle de la tarea encargada de la lectura del sensor y los cálculos principales. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00171">171</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00662">Atender_timer_MPU6050()</a>.</p>
+
+</div>
+</div>
+<a id="a8798159826fd3ccadd09da3c751ab10c" name="a8798159826fd3ccadd09da3c751ab10c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8798159826fd3ccadd09da3c751ab10c">&#9670;&#160;</a></span>pitch</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t pitch</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variables globales de pitch y roll actuales calculados. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00195">195</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">Aplicar_Feedback()</a>.</p>
+
+</div>
+</div>
+<a id="ac6d746d6eb720ca9aea598b3b88f2fba" name="ac6d746d6eb720ca9aea598b3b88f2fba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d746d6eb720ca9aea598b3b88f2fba">&#9670;&#160;</a></span>pitch_ref</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t pitch_ref = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variables globales de pitch y roll de referencia. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00201">201</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">Aplicar_Feedback()</a>.</p>
+
+</div>
+</div>
+<a id="ab4f97c88ad81f65b7084bfda3d534cb0" name="ab4f97c88ad81f65b7084bfda3d534cb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f97c88ad81f65b7084bfda3d534cb0">&#9670;&#160;</a></span>referencia_registrada</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool referencia_registrada = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag que indica si ya se registró al menos una vez la referencia. </p>
+<p>Se usa solo para decidir qué mensaje mostrar en consola (no condiciona la lógica de medición). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00239">239</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00636">TEC2_encendido()</a>.</p>
+
+</div>
+</div>
+<a id="a14250035bc9db1fb192310b1f57f1a17" name="a14250035bc9db1fb192310b1f57f1a17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14250035bc9db1fb192310b1f57f1a17">&#9670;&#160;</a></span>roll</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t roll</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00196">196</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">Aplicar_Feedback()</a>.</p>
+
+</div>
+</div>
+<a id="a5b631097122aaff502619305c85f5637" name="a5b631097122aaff502619305c85f5637"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b631097122aaff502619305c85f5637">&#9670;&#160;</a></span>roll_ref</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t roll_ref = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00202">202</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">Aplicar_Feedback()</a>.</p>
+
+</div>
+</div>
+<a id="aff5bcad97c87e2245fc052e850477c1e" name="aff5bcad97c87e2245fc052e850477c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff5bcad97c87e2245fc052e850477c1e">&#9670;&#160;</a></span>rutina_configurada</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool rutina_configurada = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag que indica si la rutina queda configurada. </p>
+<p>True: rutina registrada correctamente. False: rutina no registrada. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00247">247</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>, <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00636">TEC2_encendido()</a>.</p>
+
+</div>
+</div>
+<a id="a4f8922ce31cbc7d990e6816f40582c2d" name="a4f8922ce31cbc7d990e6816f40582c2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8922ce31cbc7d990e6816f40582c2d">&#9670;&#160;</a></span>rutina_interrumpida</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool rutina_interrumpida = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag que indica si la rutina fue interrumpida. </p>
+<p>True: rutina interrumpida. False: rutina no interrumpida. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00255">255</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+</div>
+</div>
+<a id="a6cd53b59037094c991069edefccabe0b" name="a6cd53b59037094c991069edefccabe0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cd53b59037094c991069edefccabe0b">&#9670;&#160;</a></span>Rutina_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t Rutina_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handle de la tarea encargada del diseño de rutina. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00176">176</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00808">app_main()</a> y <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00482">Recibir_Comando_UART()</a>.</p>
+
+</div>
+</div>
+<a id="a320379ec8c0e53f031c5ff3ea2d23384" name="a320379ec8c0e53f031c5ff3ea2d23384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a320379ec8c0e53f031c5ff3ea2d23384">&#9670;&#160;</a></span>series</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t series = <a class="el" href="#a674780f9d806f97fc5d0331654b2fce9">DEFAULT_SERIES</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Número de series configuradas para la rutina actual. </p>
+<p>Cantiad de repeticiones de ciclos de ejercicio/descanso que se ejecutarán al iniciar la rutina. Toma el valor de DEFAULT_SERIES al inicio y se actualiza con la condigutación del usuario vía UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00263">263</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00408">Configuracion_Rutina_UART()</a>.</p>
+
+</div>
+</div>
+<a id="ae072a175cc629508975772e372064f93" name="ae072a175cc629508975772e372064f93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae072a175cc629508975772e372064f93">&#9670;&#160;</a></span>tolerancia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float_t tolerancia = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variable global de tolerancia angular en grados para detección de desvío postural. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00207">207</a> del archivo <a class="el" href="_proyecto___final___bloque3_8c_source.html">Proyecto_Final_Bloque3.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final___bloque3_8c_source.html#l00571">Aplicar_Feedback()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d9edf6c004b4a7ff14fe9ae7a92214ee.html">firmware</a></li><li class="navelem"><a href="dir_429d80758da54da73083af4edd40d0b3.html">projects</a></li><li class="navelem"><a href="dir_c67138d0dd17c4361532400bf9aa7cf6.html">Proyecto_Final_Bloque3</a></li><li class="navelem"><a href="dir_7a85214adc1f831f9fee9fe7a4d30e4e.html">main</a></li><li class="navelem"><a href="_proyecto___final___bloque3_8c.html">Proyecto_Final_Bloque3.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

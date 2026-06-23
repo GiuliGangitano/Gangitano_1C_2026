@@ -7,13 +7,17 @@
  *
  * @section hardConn Conexión de hardware
  *
- * |    Periférico  |   ESP32   	|
+ * |    MPU6050     |   ESP32   	|
  * |:--------------:|:--------------|
  * | 	VCC		 	| 	VCC			|
  * | 	GND		 	| 	GND			|
  * | 	SDA		 	| 	GPIO_6		|
  * | 	SCL		 	| 	GPIO_7		|
- *
+ * 
+ * |    BUZZER      |   ESP32   	|
+ * |:--------------:|:--------------|
+ * | 	B +		 	| 	GPIO_20		|
+ * | 	B -		 	| 	GND			|
  *
  * @section changelog Registro de cambios
  *
