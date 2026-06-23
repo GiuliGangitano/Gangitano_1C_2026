@@ -1,37 +1,61 @@
-/*! @mainpage Template
+/*! @mainpage Sistema de análisis de estabilidad postural para tiro con arco.
  *
- * @section genDesc General Description
+ * @section genDesc Descripción General
  *
- * This section describes how the program works.
+ * Este código implementa un sistema basado en ESP32 y el sensor MPU6050 para monitorear la estabilidad
+ * postural de arqueros. El sistema calcula en tiempo real los ángulos de inclinación (pitch y roll) del arco
+ * y proporciona retroalimentación auditiva y visual cuando el usuario se desvía de una postura de referencia
+ * establecida. Además, el sistema integra una etapa de selección de rutina para los entrenamientos.
  *
- * <a href="https://drive.google.com/...">Operation Example</a>
  *
- * @section hardConn Hardware Connection
+ * @section hardConn Conexión de hardware
  *
- * |    Peripheral  |   ESP32   	|
+ * :--------------------------------:
+ * |    MPU6050     |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
+ * | 	VCC		 	| 	VCC			|
+ * | 	GND		 	| 	GND			|
+ * | 	SDA		 	| 	GPIO_6		|
+ * | 	SCL		 	| 	GPIO_7		|
+ * :--------------------------------:
+ * |    BUZZER      |   ESP32   	|
+ * |:--------------:|:--------------|
+ * | 	B +		 	| 	GPIO_20		|
+ * | 	B -		 	| 	GND			|
+ * :--------------------------------:
  *
+ * @section changelog Registro de cambios
  *
- * @section changelog Changelog
- *
- * |   Date	    | Description                                    |
- * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
- *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
- *
+ * |   Fecha    | Descripción                                                                  |
+ * |:----------:|:-----------------------------------------------------------------------------|
+ * | 27/05/2026 | Creación del documento. Diagrama en bloques. Revisión del driver del MPU6050.|
+ * | 03/06/2026 | Adquisición de datos, cálculo de pitch/roll, timer y tarea MPU6050.   	   |
+ * | 06/06/2026 | Instalación de Wokwi para simulación y pruebas.                              |
+ * | 09/06/2026 | Incorporación de teclas de referencia y encendido (sin funcionar aún).       |
+ * | 10/06/2026 | Teclas por interrupción, comparación con referencia y alarma. Bloque 1 OK.   |   
+ * | 11/06/2026 | Comienzo Bloque 2. Configuración de tecla 2 para encendido/apagado además de |
+ * |            | inicio/fin de medición (sin funcionar aún). Prueba en Wokwi.                 |
+ * | 16/06/2026 | Configuración de tecla 2 para encendido/apagado, tecla 'S' para inicio/fin   |
+ * |            | de medición. Mensaje de inicio por consola (sin funcionar aún).              |
+ * | 17/06/2026 | Cambio a máquina de estados. Configuración de teclas OK. Se deja Bloque 2 y  | 
+ * |            | se arma otro archivo de prueba con todas las nuevas modificaciones.          | 
+ * | 21/06/2026 | Configuración flujo de información por UART.                                 | 
+ * | 22/06/2026 | Creación archivo Bloque 3 y final. Creación tarea de rutina. Verificación de |
+ * |            | todos los pasos y feedback. Bloque 3 OK.                                     |
+ * | 23/06/2026 | Documentación completa en Doxygen.                                           |
+ * x
+ * @author Giuliana Gangitano (giuligangitano95@gmail.com)
  */
 
 /*==================[inclusions]=============================================*/
 #include <stdio.h>
 #include <stdint.h>
-#include <string.h>	 // memset
-#include <stdlib.h>	 // atoi
-#include <stdbool.h> // bool, true, false (si no está ya incluido)
+#include <string.h>	 // para poder usar memset
+#include <stdlib.h>	 // para poder usar atoi
+#include <stdbool.h>  // para poder usar bool, true, false (si no está ya incluido)
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include <math.h> // para poder usar el atan2, sqrt y M_PI en el cálculo de pitch y roll
+#include <math.h>  // para poder usar el atan2, sqrt y M_PI en el cálculo de pitch y roll
 #include "i2c_mcu.h"
 #include "mpu6050.h"
 #include "led.h"
@@ -41,18 +65,78 @@
 #include "timer_mcu.h"
 #include "pwm_mcu.h"
 /*==================[macros and definitions]=================================*/
+/**
+ * @brief Período del timer del sensor MPU6050.
+ *
+ * Define el tiempo en microsegundos del timer que controla la lectura de datos del sensor MPU6050.
+ */
 #define CONFIG_PERIOD_MPU6050 500000 // 0.5s
+
+/**
+ * @brief Frecuencia del maestro del I2C.
+ *
+ * Define la frecuencia en Hz del clock del maestro para el protocolo I2C.
+ */
 #define I2C_MASTER_FREQ 100000
 
+/**
+ * @brief Frecuencia del PWM.
+ *
+ * Define la frecuencia en Hz del PWM utilizado en el buzzer.
+ */
 #define PWM_WAVE_FREQ 2000
+
+/**
+ * @brief Ciclo de trabajo del PWM (porcentaje).
+ *
+ * Define el ciclo de trabajo del PWM utilizado en el buzzer.
+ */
 #define PWM_CT 50
+
+/**
+ * @brief Frecuencia de tono de alarma.
+ *
+ * Define la frecuencia en Hz del tono del buzzer cuando se detecta desvío postural.
+ */
 #define BUZZER_TONE_FREQ 3000
 
+/**
+ * @brief Máxima cantidad de digitos permitidos para la configuración de la rutina.
+ * 
+ * Define el límite de caracteres para el buffer de entrada vía UART.
+ */
 #define MAX_DIGITOS 3
+
+/**
+ * @brief Cantidad de series por defecto.
+ *
+ * Define la cantidad de series para la elección de rutina DEFAULT.
+ */
 #define DEFAULT_SERIES 1
-#define DEFAULT_EJERCICIO 10
+
+/**
+ * @brief Duración del ejercicio por defecto.
+ *
+ * Define la cantidad en segundos que dura la etapa de ejercicio para la elección de rutina DEFAULT.
+ */
+#define DEFAULT_EJERCICIO 20
+
+/**
+ * @brief Duración del descanso por defecto.
+ *
+ * Define la cantidad en segundos que dura la etapa de descanso para la elección de rutina DEFAULT.
+ */
 #define DEFAULT_DESCANSO 0
 /*=========================[typedef]=========================================*/
+/**
+ * @brief Estados posibles del sistema.
+ *
+ * @details Enumeración que representa los cuatro estados del sistema:
+ * 	- ESTADO_APAGADO: el sistema está inactivo (LED rojo encendido).
+ * 	- ESTADO_STANDBY: el sistema está encendido pero no midiendo (LED amarillo encendido).
+ * 	- ESTADO_EJERCICIO: el sistema está en modo de medición activa (LED verde encendido).
+ * 	- ESTADO_DESCANSO: el sistema está en pausa entre series (LED amarillo y verde encendidos).
+ */
 typedef enum
 {
 	ESTADO_APAGADO = 0,
@@ -61,54 +145,153 @@ typedef enum
 	ESTADO_DESCANSO,
 } estado_sistema_t;
 
+/**
+ * @brief Estados del flujo de configuración de rutina vía UART.
+ *
+ * @details Enumeración que representa las etapas del proceso de configuración de rutina.
+ * Cada valor indica qué dato se está esperando recibir del usuario en ese momento:
+ * 	- CONFIG_NINGUNO: no hay configuración en curso.
+ * 	- CONFIG_PREGUNTA_DP: esperando elección entre rutina por defecto ('D') o personalizada ('P').
+ * 	- CONFIG_SERIES: esperando número de series (rango: 1 a 20).
+ * 	- CONFIG_EJERCICIO: esperando duración del ejercicio en segundos (rango: 5 a 600).
+ * 	- CONFIG_DESCANSO: esperando duración del descanso en segundos (rango: 0 a 600).
+ */
 typedef enum
 {
 	CONFIG_NINGUNO = 0,
-	CONFIG_PREGUNTA_DP, /**< Esperando 'D' (default) o 'P' (personalizada). */
-	CONFIG_SERIES,		/**< Esperando número de series. */
-	CONFIG_EJERCICIO,	/**< Esperando duración de ejercicio (segundos). */
-	CONFIG_DESCANSO,	/**< Esperando duración de descanso (segundos). */
+	CONFIG_PREGUNTA_DP, 
+	CONFIG_SERIES,		
+	CONFIG_EJERCICIO,	
+	CONFIG_DESCANSO,	
 } config_rutina_t;
 /*==================[internal data definition]===============================*/
+/**
+ * @brief Handle de la tarea encargada de la lectura del sensor y los cálculos principales.
+ */
 TaskHandle_t MPU6050_task_handle = NULL;
 
+/**
+ * @brief Handle de la tarea encargada del diseño de rutina.
+ */
 TaskHandle_t Rutina_task_handle = NULL;
 
+/**
+ * @brief Variables globales de aceleración crudas (enteros).
+ */
 int16_t acc_x;
 int16_t acc_y;
 int16_t acc_z;
 
+/**
+ * @brief Variables globales de aceleración convertidas a float.
+ */
 float_t accf_x;
 float_t accf_y;
 float_t accf_z;
 
+/**
+ * @brief Variables globales de pitch y roll actuales calculados.
+ */
 float_t pitch;
 float_t roll;
 
+/**
+ * @brief Variables globales de pitch y roll de referencia.
+ */
 float_t pitch_ref = 0;
 float_t roll_ref = 0;
 
-float_t tolerancia = 20;
+/**
+ * @brief Variable global de tolerancia angular en grados para detección de desvío postural.
+ */
+float_t tolerancia = 10;
 
+/**
+ * @brief Estado actual del sistema.
+ * 
+ * @details Variable global que refñeja en qué estado se encuentra el sistema en todo momento. Es modificada
+ * tanto desde las interrupciones (TECLA 2) como desde la tarea de rutina y los comandos de UART.
+ */
 volatile estado_sistema_t estado_sist = ESTADO_APAGADO;
 
+/**
+ * @brief Estado actual del flujo de configuración de rutina.
+ * 
+ * @details Variable global que indica en qué etapa del proceso de configuración se encuentra el sistema 
+ * cuando el usuario está configurando una rutina vía UART.
+ */
 volatile config_rutina_t config_rut = CONFIG_NINGUNO;
 
+/**
+ * @brief Flag para registrar postura de referencia (seteado por TECLA 1).
+ *
+ * True: se toma la referencia correctamente.
+ * False: no hay solicitud de referencia.
+ */
 volatile bool flag_set_referencia = false;
 
+/**
+ * @brief Flag que indica si ya se registró al menos una vez la referencia.
+ *
+ * Se usa solo para decidir qué mensaje mostrar en consola (no condiciona la lógica
+ * de medición).
+ */
 volatile bool referencia_registrada = false;
 
+/**
+ * @brief Flag que indica si la rutina queda configurada.
+ *
+ * True: rutina registrada correctamente.
+ * False: rutina no registrada.
+ */
 volatile bool rutina_configurada = false;
 
+/**
+ * @brief Flag que indica si la rutina fue interrumpida.
+ *
+ * True: rutina interrumpida.
+ * False: rutina no interrumpida.
+ */
 volatile bool rutina_interrumpida = false;
 
+/**
+ * @brief Número de series configuradas para la rutina actual.
+ *
+ * @details Cantiad de repeticiones de ciclos de ejercicio/descanso que se ejecutarán al iniciar la rutina.
+ * Toma el valor de DEFAULT_SERIES al inicio y se actualiza con la condigutación del usuario vía UART.
+ */
 volatile uint8_t series = DEFAULT_SERIES;
+
+/**
+ * @brief Duración en segundos de la etapa de ejercicio por serie.
+ *
+ * @details Tiempo activo de medición por serie. Toma el valor de DEFAULT_EJERCICIO al inicio y se 
+ * actualiza con la configuración del usuario vía UART.
+ */
 volatile uint16_t ejercicio = DEFAULT_EJERCICIO;
+
+/**
+ * @brief Duración en segundos de la etapa de descanso entre series.
+ *
+ * @details Tiempo de pausa entre series consecutivas. Toma el valor de DEFAULT_DESCANSO al inicio y se 
+ * actualiza con la configuración del usuario vía UART. Si es 0, no hay descanso entre series.
+ */
 volatile uint16_t descanso = DEFAULT_DESCANSO;
 
+/**
+ * @brief Buffer de entrada para recibir datos númericos por UART.
+ *
+ * @details Almacena temporalmente los caracteres recibidos por puerto serie durante la condiguración
+ * de la rutina.
+ */
 uint8_t buffer_entrada[MAX_DIGITOS + 1] = {0};
-uint8_t idx_buffer = 0;
 /*==================[internal functions declaration]=========================*/
+/**
+ * @brief Función con mensaje de inicio de sistema.
+ *
+ * @details Muestra por consola un mensaje de inicio de sistema que se muestra una sola vez, el cual
+ * contiene información de cómo funciona la aplicación.
+ */
 void Mensaje_inicio(void)
 {
 	printf("\n");
@@ -133,6 +316,15 @@ void Mensaje_inicio(void)
 	printf("==================================================================================\n");
 }
 
+/**
+ * @brief Función para calcular pitch y roll.
+ *
+ * @details Adquiere los datos de aceleración del sensor MPU6050 en sus tres ejes, hace los cálculos
+ * de pitch y roll.
+ *
+ * @param[in] p Puntero a dirección donde se almacena el valor de pitch calculado (en grados).
+ * @param[in] r Puntero a dirección donde se almacena el valor de roll calculado (en grados).
+ */
 void Calculo_Pitch_Roll(float *p, float *r)
 {
 	MPU6050_getAcceleration(&acc_x, &acc_y, &acc_z);
@@ -143,7 +335,21 @@ void Calculo_Pitch_Roll(float *p, float *r)
 	*r = atan2f(accf_y, accf_z) * 180 / (float_t)M_PI;
 }
 
-bool Procesar_Entrada_Numerica(uint8_t c, uint16_t valor_min, uint16_t valor_max, char *buffer_valor)
+/**
+ * @brief Función que valida un valor numérico ingresado por UART dentro de un rango permitido.
+ *
+ * @details Interpreta el buffer de entrada como un número enterp y verifica que no esté vacío y que se
+ * encuentre dentro del rango establecido [valor_min, valor_max]. En caso de error, imprime un mensaje por 
+ * consola para corregir la entrada de datos.
+ *
+ * @param[in] valor_min Valor mínimo aceptado (inclusive).
+ * @param[in] valor_max Valor máximo aceptado (inclusive).
+ * @param[in] buffer_valor Puntero al buffer de caracteres con el valor ingresado.
+ * 
+ * @return true si el valor es válido y se encuentra dentro del rango.
+ * @return false si la entrada está vacía o el valor está fuera del rango permitido.
+ */
+bool Procesar_Entrada_Numerica(uint16_t valor_min, uint16_t valor_max, char *buffer_valor)
 {
 	char carac = buffer_valor[0];
 	uint16_t valor = (uint16_t)atoi(buffer_valor);
@@ -167,6 +373,14 @@ bool Procesar_Entrada_Numerica(uint8_t c, uint16_t valor_min, uint16_t valor_max
 	}
 }
 
+/**
+ * @brief Función que inicia el flujo de configuración de rutina via UART.
+ * 
+ * @details Establece la variable global 'config_rut' en CONFIG_PREGUNTA_DP e imprime por consola el 
+ * mensaje inicial para que el usuario elija entre rutina por defecto ('D') o personalizada ('P'). Esta
+ * función debe llamarse desde ESTADO_STANDBY, luego de que el usuario haya registrado la postura de 
+ * referencia.
+ */
 void Iniciar_Configuracion_Rutina(void)
 {
 	config_rut = CONFIG_PREGUNTA_DP;
@@ -176,6 +390,21 @@ void Iniciar_Configuracion_Rutina(void)
 	printf("  Envíe 'P' para PERSONALIZADA\n");
 }
 
+/**
+ * @brief Máquina de estados para la confiuración de rutina vía UART.
+ * 
+ * @details Procesa los caracteres recibidos por UART según el estado actual de configuración (config_rut).
+ * Avanza por las etapas de configuración en el siguiente orden:
+ *   1. CONFIG_PREGUNTA_DP: selección entre rutina por defecto o personalizada.
+ *   2. CONFIG_SERIES: ingreso de cantidad de series (1-20).
+ *   3. CONFIG_EJERCICIO: ingreso de duración del ejercicio en segundos (5-600).
+ *   4. CONFIG_DESCANSO: ingreso de duración del descanso en segundos (0-600).
+ * 
+ * Al completarse la configuración, establece rutina_configurada en true y config_rut en CONFIG_NINGUNO.
+ * 
+ * @param[in] eleccion_rut Primer caracter recibido por UART en el ciclo actual.
+ * @param[in] buffer_2 Puntero al buffer completo con los caracteres recibidos.
+ */
 void Configuracion_Rutina_UART(uint8_t eleccion_rut, char *buffer_2)
 {
 	switch (config_rut)
@@ -203,7 +432,7 @@ void Configuracion_Rutina_UART(uint8_t eleccion_rut, char *buffer_2)
 		}
 		break;
 	case CONFIG_SERIES:
-		if (Procesar_Entrada_Numerica(eleccion_rut, 1, 20, &buffer_2[0]))
+		if (Procesar_Entrada_Numerica(1, 20, &buffer_2[0]))
 		{
 			series = (uint8_t)atoi(buffer_2);
 			config_rut = CONFIG_EJERCICIO;
@@ -212,7 +441,7 @@ void Configuracion_Rutina_UART(uint8_t eleccion_rut, char *buffer_2)
 		}
 		break;
 	case CONFIG_EJERCICIO:
-		if (Procesar_Entrada_Numerica(eleccion_rut, 5, 600, &buffer_2[0]))
+		if (Procesar_Entrada_Numerica(5, 600, &buffer_2[0]))
 		{
 			ejercicio = (uint8_t)atoi(buffer_2);
 			config_rut = CONFIG_DESCANSO;
@@ -221,7 +450,7 @@ void Configuracion_Rutina_UART(uint8_t eleccion_rut, char *buffer_2)
 		}
 		break;
 	case CONFIG_DESCANSO:
-		if (Procesar_Entrada_Numerica(eleccion_rut, 0, 600, &buffer_2[0]))
+		if (Procesar_Entrada_Numerica(0, 600, &buffer_2[0]))
 		{
 			descanso = (uint8_t)atoi(buffer_2);
 			rutina_configurada = true;
@@ -237,6 +466,19 @@ void Configuracion_Rutina_UART(uint8_t eleccion_rut, char *buffer_2)
 	}
 }
 
+/**
+ * @brief Función de recepción de datos por UART.
+ * 
+ * @details Esta función se invoca automáticamente cada vez que se reciben datos por el puerto UART_PC.
+ * Lee hasta MAX_DIGITOS + 1 caracteres en el buffer global 'buffer_entrada' y actúa según el contexto:
+ * 	- Si hay una configuración de rutina en curso, delega el procesamiento a 'Configuracion_Rutina_UART()'.
+ * 	- Si se recibe 'S' o 's' en ESTADO_STANDBY, verifica que haya referencia registrada y rutina 
+ * 	  configurada antes de iniciar la medición (notifica a 'Rutina_task_handle').
+ * 	- Si se recibe 'S' o 's' en ESTADO_EJERCICIO o ESTADO_DESCANSO, detiene la medición.
+ * 	- Cualquier otro carácter fuera de contexto genera un mensaje de error por consola.
+ * 
+ * @param[in] param Puntero a parámetros genéricos (no utilizado).
+ */
 void Recibir_Comando_UART(void *param)
 {
 	uint8_t caracter;
@@ -287,6 +529,12 @@ void Recibir_Comando_UART(void *param)
 	}
 }
 
+/**
+ * @brief Función de buzzer para indicar inicio o fin de rutina.
+ *
+ * @details Reproduce dos notas consecutivas para señalizar al usuario que la rutina comenzó o finalizó. 
+ * Se inserta un retardo de 50 ms entre ambas.
+ */
 void Buzzer_Inicio_Fin(void)
 {
     BuzzerPlayTone(NOTE_C5, 150);
@@ -294,11 +542,32 @@ void Buzzer_Inicio_Fin(void)
     BuzzerPlayTone(NOTE_E5, 200);
 }
 
+/**
+ * @brief Función de buzzer para indicar transición entre etapas de rutina.
+ *
+ * @details Reproduce uan nota durante 400 ms para indicar al usuario el cambio de etapa dentro de la 
+ * rutina: inicio de descanso o comienzo de nueva serie.
+ */
 void Buzzer_Transicion(void)
 {
     BuzzerPlayTone(NOTE_A4, 400);
 }
 
+/**
+ * @brief Función que aplica Feedabakk visual y auditivo según el estado del sistema.
+ *
+ * @details Actualiza el estado de los tres LEDs y del buzzer de acuerdo con el valor actual de la variable
+ * global 'estado_sist':
+ * 
+ * 	- ESTADO_APAGADO: LED rojo encendido, buzzer apagado.
+ * 	- ESTADO_STANDBY: LED amarillo encendido, buzzer apagado.
+ * 	- ESTADO_EJERCICIO: LED verde encendido. El buzzer se activa si el pitch o el roll actuales superan 
+ * 	  la tolerancia respecto a los valores de referencia; de lo contrario, el buzzer permanece apagado.
+ * 	- ESTADO_DESCANSO: LED verde y LED amarillo encendidos, buzzer apagado.
+ * 
+ * @note Esta función se llamada periódicamente desde la tarea de detección para mantener el feedback
+ * sincronizado con el estado del sistema.
+ */
 void Aplicar_Feedback(void)
 {
 	switch (estado_sist)
@@ -339,11 +608,31 @@ void Aplicar_Feedback(void)
 	}
 }
 
+/**
+ * @brief Función ejecutada ante la interrupción de la TECLA 1.
+ *
+ * @details Setea el estado de la variable 'flag_set_referencia' en true.
+ *
+ * @note Esta función se ejecuta en contexto de interrupción (ISR).
+ *
+ * @param[in] ptr Puntero a parámetros genéricos (no utilizado).
+ */
 void TEC1_set_referencia(void *ptr)
 {
 	flag_set_referencia = true;
 }
 
+/**
+ * @brief Función ejecutada ante la interrupción de la TECLA 2.
+ *
+ * @details  Si la variable 'estado_sist' es ESTADO_APAGADO pasa a ESTADO_STANDBY, en cualquier otro caso pasa a
+ * apagado ESTADO_APAGADO. Como medida de seguridad, se resetean ciertas flags y el valor de 'config_rut'.
+ *
+ * @note Esta función se ejecuta en contexto de interrupción (ISR). No inicia la medición: eso es 
+ * responsabilidad exclusiva de la tecla 'S' por UART.
+ *
+ * @param[in] ptr Puntero a parámetros genéricos (no utilizado).
+ */
 void TEC2_encendido(void *ptr)
 {
 	switch (estado_sist)
@@ -360,11 +649,38 @@ void TEC2_encendido(void *ptr)
 	}
 }
 
+/**
+ * @brief Servicio de interrupción del timer del sensor MPU6050.
+ *
+ * @details Esta función se ejecuta cada vez que el timer llega a su cuenta máxima. Envía una notificación a la
+ * tarea 'Deteccion_Pitch_Roll' para desbloquearla.
+ *
+ * @note Esta función se ejecuta en contexto de interrupción (ISR).
+ *
+ * @param[in] param Puntero a parámetros genéricos (no utilizado).
+ */
 void Atender_timer_MPU6050(void *param)
 {
 	vTaskNotifyGiveFromISR(MPU6050_task_handle, pdFALSE);
 }
 
+/**
+ * @brief Tarea encargada de la adquisición y procesamiento de datos del sensor.
+ *
+ * @details Esta tarea permanece en estado bloqueado hasta recibir una notificación del timer de muestreo.
+ * Al despertar, lee los valores brutos del MPU6050, realiza el cálculo trigonométrico para obtener pitch
+ * y roll, y actualiza el feedback del sistema según el estado actual.
+ * 
+ * 	- ESTADO_APAGADO: solo actualiza el feedback (LED rojo, buzzer apagado).
+ * 	- ESTADO_STANDBY: muestra el mensaje de bienvenida la primera vez, actualiza el feedback y, si
+ * 	  'flag_set_referencia' está activo, registra los valores de pitch y roll actuales como referencia e 
+ * 	  inicia el flujo de configuración de rutina.
+ * 	- ESTADO_EJERCICIO: calcula pitch y roll actuales, los imprime por consola junto con los valores de 
+ * 	  referencia y las aceleraciones crudas, y actualiza el feedback.
+ * 	- ESTADO_DESCANSO: solo actualiza el feedback (LEDs verde y amarillo, buzzer apagado).
+ *
+ * @param[in] pvParameter Puntero a los parámetros de la tarea (no utilizado).
+ */
 static void vTask_Deteccion_Pitch_Roll(void *pvParameter)
 {
 	bool mensaje_inicio_mostrado = false;
@@ -405,6 +721,29 @@ static void vTask_Deteccion_Pitch_Roll(void *pvParameter)
 	}
 }
 
+/**
+ * @brief Tarea encargada de gestionar el ciclo de series de la rutina de entrenamiento.
+ *
+ * @details Esta tarea permanece bloqueada hasta recibir una notificación desde 'Recibir_Comando_UART()'
+ * al detectar el comando 'S' con las condiciones de 'referencia registrada' y 'rutina configurada'
+ * satisfechas.
+ *
+ * Al desbloquearse, ejecuta el siguiente flujo:
+ * 	1. Emite el tono de inicio de rutina (Buzzer_Inicio_Fin()).
+ * 	2. Para cada serie (1 a 'series'):
+ *    - Cambia el sistema a ESTADO_EJERCICIO y espera 'ejercicio' segundos. Si el sistema abandona ese 
+ * 	    estado (interrupción por 'S'), se activa 'rutina_interrumpida' y se aborta el ciclo.
+ *    - Si no es la última serie y 'descanso' > 0, cambia a ESTADO_DESCANSO, emite el tono de transición y 
+ * 	    espera 'descanso' segundos. Verifica nuevamente posible interrupción.
+ *    - A partir de la segunda serie, emite el tono de transición al comenzar.
+ * 3. Al finalizar todas las series (o ante una interrupción), imprime el resultado por consola, emite el 
+ * 	  tono de fin de rutina y vuelve a ESTADO_STANDBY, reseteando 'rutina_configurada'.
+ *
+ * @note En cada segundo se verifica si el estado del sistema fue modificado externamente (por UART o por 
+ * TECLA 2) para permitir la interrupción inmediata de la rutina.
+ *
+ * @param[in] pvParameter Puntero a los parámetros de la tarea (no utilizado).
+ */
 static void vTask_Rutina(void *pvParameter)
 {
 	while (1)
@@ -461,6 +800,11 @@ static void vTask_Rutina(void *pvParameter)
 	}
 }
 /*==================[external functions definition]==========================*/
+/**
+ * @brief Función principal de la aplicación.
+ *
+ * @details Inicializa todos los periféricos y recursos del sistema.
+ */
 void app_main(void)
 {
 	// Inicialización de periféricos
@@ -490,7 +834,7 @@ void app_main(void)
 	xTaskCreate(&vTask_Deteccion_Pitch_Roll, "Leer_sensor_MPU6050", 2048, NULL, 5, &MPU6050_task_handle);
 	xTaskCreate(&vTask_Rutina, "Rutina_entrenamiento", 2048, NULL, 5, &Rutina_task_handle);
 
-	// Configuración, inicialización y arranque del timer para adquisión de datos del MPU-6050
+	// Configuración, inicialización y arranque del timer para adquisión de datos del MPU6050
 	timer_config_t timer_MPU6050 = {
 		.timer = TIMER_A,
 		.period = CONFIG_PERIOD_MPU6050,
